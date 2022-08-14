@@ -21,15 +21,21 @@ class BoxTest {
     @Test
     void checkVertex(){
         Box box = new Box(4, 10);
-        int vertex = box.getNumberOfVertices();
-        assertThat(vertex).isPositive().isEven();
+        boolean vertex = box.isExist();
+        assertThat(vertex).isTrue().isNotNull();
     }
 
     @Test
-    void isExist(){
+    void checkNumberOfVerticesTetrahedron(){
         Box box = new Box(4, 8);
         int exist = box.getNumberOfVertices();
         assertThat(exist).isPositive().isEqualTo(4);
+    }
+    @Test
+    void checkNumberOfVerticesCube(){
+        Box box = new Box(6, 8);
+        int exist = box.getNumberOfVertices();
+        assertThat(exist).isPositive().isEqualTo(6);
     }
     @Test
     void checkAreaTetrahedron(){
