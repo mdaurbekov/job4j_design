@@ -32,10 +32,16 @@ class BoxTest {
         assertThat(exist).isPositive().isEqualTo(4);
     }
     @Test
-    void checkArea(){
+    void checkAreaTetrahedron(){
         Box box = new Box(4, 6);
         double area = box.getArea();
         assertThat(area).isGreaterThan(62.30d).isLessThan(62.40d);
+    }
+    @Test
+    void checkAreaCube(){
+        Box box = new Box(6, 8);
+        double area = box.getArea();
+        assertThat(area).isEqualTo(384.00d);
     }
 
 }
