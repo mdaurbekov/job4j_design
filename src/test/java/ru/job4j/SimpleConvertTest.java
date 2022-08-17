@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class SimpleConvertTest {
     @Test
@@ -20,6 +20,7 @@ class SimpleConvertTest {
                 .containsAnyOf("zero", "second", "six")
                 .doesNotContain("first", Index.atIndex(1));
     }
+
     @Test
     void checkList() {
         SimpleConvert simpleConvert = new SimpleConvert();
