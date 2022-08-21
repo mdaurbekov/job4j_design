@@ -60,14 +60,13 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
             private final int expectedModCount = modCount;
             SimpleLinkedList.Node<E> currentNode = null;
             SimpleLinkedList.Node<E> nextNode = head;
-            private int indexCount = 0;
 
             @Override
             public boolean hasNext() {
                 if (expectedModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                return indexCount < size;
+                return nextNode != null;
             }
 
             @Override
@@ -77,7 +76,6 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
                 }
                 currentNode = nextNode;
                 nextNode = nextNode.next;
-                indexCount++;
                 return currentNode.item;
             }
         };
