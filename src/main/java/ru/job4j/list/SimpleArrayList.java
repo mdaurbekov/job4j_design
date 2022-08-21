@@ -16,12 +16,13 @@ public class SimpleArrayList<T> implements SimpleList<T> {
 
     @Override
     public void add(T value) {
-        if (size == container.length - 1) {
+        if (size == container.length) {
             grow();
         }
         container[size] = value;
         size++;
         modCount++;
+
     }
 
     @Override
@@ -35,7 +36,7 @@ public class SimpleArrayList<T> implements SimpleList<T> {
     @Override
     public T remove(int index) {
         T t = get(index);
-        System.arraycopy(container, index + 1, container, index, size - 1);
+        System.arraycopy(container, index + 1, container, index, size - 2);
         size--;
         container[size] = null;
         modCount++;
@@ -55,11 +56,8 @@ public class SimpleArrayList<T> implements SimpleList<T> {
     }
 
     private void grow() {
-
         int arrLength = container.length == 0 ? 1 : container.length;
-
         container = Arrays.copyOf(container, arrLength * 2);
-
 
     }
 
@@ -79,7 +77,6 @@ public class SimpleArrayList<T> implements SimpleList<T> {
 
             @Override
             public T next() {
-
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
