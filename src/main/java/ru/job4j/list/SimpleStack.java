@@ -2,8 +2,6 @@ package ru.job4j.list;
 
 
 public class SimpleStack<T> {
-    Node<T> head;
-
     private ForwardLinked<T> linked = new ForwardLinked<T>();
 
     public T pop() {
@@ -14,13 +12,4 @@ public class SimpleStack<T> {
         linked.addFirst(value);
     }
 
-    private static class Node<T> {
-        T value;
-        Node<T> next;
-
-        public Node(T value, Node<T> next) {
-            this.value = value;
-            this.next = next;
-        }
-    }
 }
