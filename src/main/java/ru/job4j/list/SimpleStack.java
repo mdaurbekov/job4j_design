@@ -1,8 +1,6 @@
 package ru.job4j.list;
 
 
-import java.util.NoSuchElementException;
-
 public class SimpleStack<T> {
     Node<T> head;
 
@@ -13,7 +11,7 @@ public class SimpleStack<T> {
     }
 
     public void push(T value) {
-         linked.addFirst(value);
+        linked.addFirst(value);
     }
 
     private static class Node<T> {
