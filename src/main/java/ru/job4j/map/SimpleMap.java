@@ -28,8 +28,6 @@ public class SimpleMap<K, V> implements Map<K, V> {
             table[i] = new MapEntry<>(hash, key, value, null);
             count++;
             result = true;
-        } else if (p.key != null && p.hash == hash && p.key.equals(key)) {
-            p.value = value;
         }
         if (LOAD_FACTOR <= count * 1.0f / capacity) {
             expand();

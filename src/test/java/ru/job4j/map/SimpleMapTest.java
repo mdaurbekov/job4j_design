@@ -42,7 +42,7 @@ class SimpleMapTest {
         assertThat(map.put(8, "8")).isFalse();
         assertThat(map).hasSize(5);
         assertThat(map.put(1, "10")).isFalse();
-        assertThat(map.get(1)).isEqualTo("10");
+        assertThat(map.get(1)).isEqualTo("1");
         assertThat(map).hasSize(5);
     }
 
