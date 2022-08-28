@@ -65,8 +65,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
         int hash = (key == null) ? 0 : hash(key.hashCode());
         MapEntry<K, V> first = table[indexFor(hash)];
         K k;
-        if (first != null && first.hash == hash &&
-                ((k = first.key) == key || (key != null && key.equals(k)))) {
+        if (first != null && first.hash == hash && ((k = first.key) == key || (key != null && key.equals(k)))) {
             result = first.value;
         }
         return result;
@@ -78,8 +77,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
         int hash = (key == null) ? 0 : hash(key.hashCode());
         MapEntry<K, V> first = table[indexFor(hash)];
         K k;
-        if (first != null && first.hash == hash &&
-                ((k = first.key) == key || (key != null && key.equals(k)))) {
+        if (first != null && first.hash == hash && ((k = first.key) == key || (key != null && key.equals(k)))) {
             table[indexFor(hash)] = null;
             result = true;
             modCount++;
