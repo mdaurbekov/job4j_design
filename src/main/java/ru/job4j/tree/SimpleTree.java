@@ -28,9 +28,6 @@ public class SimpleTree<E> implements Tree<E> {
         return false;
     }
 
-    //    private Optional<Node<E>> findByPredicate(Predicate<Node<E>> condition) {
-//        return null;
-//    }
     @Override
     public Optional<Node<E>> findBy(E value) {
         Optional<Node<E>> rsl = Optional.empty();
