@@ -20,7 +20,10 @@ public class Config {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             read.lines().forEach(s -> {
                 if (!s.trim().matches("#(.*)")) {
-                    String[] strings = s.split("=");
+                    String[] strings = s.split("=", 2);
+                    if (strings.length < 2 | strings[0].equals("") | strings[1].equals("")) {
+                        throw new IllegalArgumentException("some message");
+                    }
                     values.put(strings[0], strings[1]);
                 }
             });
