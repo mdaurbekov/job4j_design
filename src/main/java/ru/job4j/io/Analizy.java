@@ -12,14 +12,11 @@ public class Analizy {
                 String[] strings = s.split(" ");
                 int statusCode = Integer.parseInt(strings[0]);
                 boolean checkStatus = statusCode == 400 || statusCode == 500;
-                if (checkStatus & statusOk.get()) {
-                    out.print(strings[1] + ";");
-                    statusOk.set(false);
+                if (checkStatus == statusOk.get()) {
+                    out.append(strings[1]).append(statusOk.get() ? ";" : System.lineSeparator());
+                    statusOk.set(!statusOk.get());
                 }
-                if (!checkStatus & !statusOk.get()) {
-                    out.println(strings[1]);
-                    statusOk.set(true);
-                }
+
             });
 
         } catch (IOException e) {
