@@ -1,16 +1,12 @@
 package ru.job4j.io;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.Test;
 
 import java.io.*;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class AnalizyTest {
-    @Rule
-    public TemporaryFolder folder = new TemporaryFolder();
 
     @Test
     public void checkTheServer() throws IOException {
