@@ -28,7 +28,7 @@ class ConfigTest {
         String path = "./data/key_is_null.properties";
         Config config = new Config(path);
         IllegalArgumentException thrown = Assertions.assertThrows(IllegalArgumentException.class, config::load);
-        Assertions.assertEquals("some message", thrown.getMessage());
+        Assertions.assertEquals("=rtgbrttgb", thrown.getMessage());
     }
 
     @Test
@@ -36,7 +36,15 @@ class ConfigTest {
         String path = "./data/value_is_null.properties";
         Config config = new Config(path);
         IllegalArgumentException thrown = Assertions.assertThrows(IllegalArgumentException.class, config::load);
-        Assertions.assertEquals("some message", thrown.getMessage());
+        Assertions.assertEquals("=rtgbrttgb", thrown.getMessage());
+    }
+
+    @Test
+    void whenNoSymbol() {
+        String path = "./data/no_symbol_=.properties";
+        Config config = new Config(path);
+        IllegalArgumentException thrown = Assertions.assertThrows(IllegalArgumentException.class, config::load);
+        Assertions.assertEquals("khadliadblaideblaibhaei;lbeb", thrown.getMessage());
     }
 
 }

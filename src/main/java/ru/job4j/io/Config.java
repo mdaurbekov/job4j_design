@@ -21,8 +21,8 @@ public class Config {
             read.lines().forEach(s -> {
                 if (!s.trim().matches("#(.*)")) {
                     String[] strings = s.split("=", 2);
-                    if (strings.length < 2 | strings[0].equals("") | strings[1].equals("")) {
-                        throw new IllegalArgumentException("some message");
+                    if (strings.length < 2 || strings[0].isBlank() || strings[1].isBlank()) {
+                        throw new IllegalArgumentException(s);
                     }
                     values.put(strings[0], strings[1]);
                 }
