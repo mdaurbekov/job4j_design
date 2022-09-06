@@ -30,7 +30,7 @@ public class Search {
             throw new IllegalArgumentException("Неверное расширение файла");
         }
         Path path = Paths.get(parameters[0]);
-        if (!Files.exists(path)) {
+        if (!Files.exists(path) & !Files.isDirectory(path)) {
             throw new IllegalArgumentException("Каталог отсутствует");
         }
 
