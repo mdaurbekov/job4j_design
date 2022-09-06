@@ -26,6 +26,13 @@ public class Search {
         if (parameters.length < 2) {
             throw new IllegalArgumentException("Недостаточно параметров");
         }
+        if (!parameters[1].matches("\\.[^\\.]+")) {
+            throw new IllegalArgumentException("Неверное расширение файла");
+        }
+        Path path = Paths.get(parameters[0]);
+        if (!Files.exists(path)) {
+            throw new IllegalArgumentException("Каталог отсутствует");
+        }
 
     }
 }
