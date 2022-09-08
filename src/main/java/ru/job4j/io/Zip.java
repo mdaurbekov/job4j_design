@@ -36,11 +36,28 @@ public class Zip {
         }
     }
 
+    private void checkParameters(String[] strings) {
+        for (String str : strings) {
+            if (!str.contains("=")) {
+                throw new IllegalArgumentException("Отсутствует символ =");
+            }
+            String[] strs = str.replaceFirst("-", "").split("=", 2);
+
+            if (strs[0].isBlank()) {
+                throw new IllegalArgumentException("Отсутствует ключ");
+            }
+            if (strs[1].isBlank()) {
+                throw new IllegalArgumentException("Отсутствует значение");
+            }
+        }
+    }
+
     public static void main(String[] args) throws IOException {
+        Zip zip1 = new Zip();
+        zip1.checkParameters(args);
         Path path = Paths.get(ArgsName.of(args).get("d"));
         SearchFiles searchFiles = new SearchFiles(p -> !p.toFile().getName().endsWith(ArgsName.of(args).get("e")));
         Files.walkFileTree(path, searchFiles);
-        Zip zip1 = new Zip();
         zip1.packFiles(searchFiles.getPaths(), new File(ArgsName.of(args).get("o")));
 
     }
