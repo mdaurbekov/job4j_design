@@ -36,25 +36,14 @@ public class Zip {
         }
     }
 
-    private void checkParameters(String[] strings) {
-        for (String str : strings) {
-            if (!str.contains("=")) {
-                throw new IllegalArgumentException("Отсутствует символ =");
-            }
-            String[] strs = str.replaceFirst("-", "").split("=", 2);
-
-            if (strs[0].isBlank()) {
-                throw new IllegalArgumentException("Отсутствует ключ");
-            }
-            if (strs[1].isBlank()) {
-                throw new IllegalArgumentException("Отсутствует значение");
-            }
-        }
-    }
 
     public static void main(String[] args) throws IOException {
+        if (args.length != 3) {
+            throw new IllegalArgumentException("Неверное количество параметров");
+        }
         Zip zip1 = new Zip();
-        zip1.checkParameters(args);
+        ArgsName argsName = new ArgsName();
+        argsName.checkArgZip(args);
         Path path = Paths.get(ArgsName.of(args).get("d"));
         SearchFiles searchFiles = new SearchFiles(p -> !p.toFile().getName().endsWith(ArgsName.of(args).get("e")));
         Files.walkFileTree(path, searchFiles);
