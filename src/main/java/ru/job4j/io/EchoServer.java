@@ -19,9 +19,9 @@ public class EchoServer {
                     String[] strings = in.readLine().split("/\\?");
                     String[] pair = strings[strings.length - 1].split(" ")[0].split("=");
                     String value = pair[pair.length - 1];
-                    if (value.equals("Exit")) {
+                    if ("Exit".equals(value)) {
                         server.close();
-                    } else if (value.equals("Hello")) {
+                    } else if ("Hello".equals(value)) {
                         out.write("Hello".getBytes());
                     } else {
                         out.write("What ?".getBytes());
