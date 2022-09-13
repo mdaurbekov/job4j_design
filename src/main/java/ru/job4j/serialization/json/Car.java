@@ -9,8 +9,6 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car{"
-                + "phone='" + model + '\''
-                + '}';
+        return "Car{" + "phone='" + model + '\'' + '}';
     }
 }

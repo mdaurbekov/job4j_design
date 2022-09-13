@@ -19,12 +19,6 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", married=" + married +
-                ", car=" + car +
-                ", children=" + Arrays.toString(children) +
-                '}';
+        return "Employee{" + "name='" + name + '\'' + ", age=" + age + ", married=" + married + ", car=" + car + ", children=" + Arrays.toString(children) + '}';
     }
 }
