@@ -31,6 +31,14 @@ public class Employee {
         return married;
     }
 
+    public Car getCar() {
+        return car;
+    }
+
+    public String[] getChildren() {
+        return children;
+    }
+
     @Override
     public String toString() {
         return "Employee{" + "name='" + name + '\'' + ", age=" + age + ", married=" + married + ", car=" + car + ", children=" + Arrays.toString(children) + '}';
