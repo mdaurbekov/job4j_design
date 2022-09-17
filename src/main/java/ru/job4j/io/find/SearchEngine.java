@@ -32,7 +32,7 @@ public class SearchEngine {
     public static Predicate<Path> getPredicate(ArgsName argsName) {
         Predicate<Path> rezult = null;
         if ("mask".equals(argsName.get("t"))) {
-            String valueName = argsName.get("n").replace("?", ".{1}").replace("*", "(.*)");
+            String valueName = argsName.get("n").replace(".", "[.]").replace("?", ".{1}").replace("*", "(.*)");
             rezult = p -> p.toFile().getName().matches(valueName);
         } else {
             rezult = p -> p.toFile().getName().matches(argsName.get("n"));
