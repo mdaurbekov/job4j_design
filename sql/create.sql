@@ -20,6 +20,16 @@ create table role_rules (
                             rules_id int references rules (id)
 );
 
+create table state (
+                       id   serial primary key,
+                       name varchar(100)
+);
+
+create table category (
+                          id   serial primary key,
+                          name varchar(100)
+);
+
 create table requests (
                           id          serial primary key,
                           number      int,
@@ -41,12 +51,5 @@ create table files (
                        requests_id int references requests (id)
 );
 
-create table category (
-                          id   serial primary key,
-                          name varchar(100)
-);
 
-create table state (
-                       id   serial primary key,
-                       name varchar(100)
-);
+
