@@ -58,6 +58,6 @@ where e.id is null;
 select m.name as m, w.name as w
 from teens m
          cross join teens w
-where m.gender != w.gender;
+where m.gender != w.gender and m.gender != 1;
 
 
