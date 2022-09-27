@@ -15,9 +15,7 @@ create or replace function discount_before()
     returns trigger as
 $$
 BEGIN
-    update products
-    set price = price + price * 0.15
-    where id = new.id;
+    new.price = new.price + (new.price * 0.15);
     return NEW;
 END;
 $$
