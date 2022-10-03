@@ -32,7 +32,7 @@ public class Config {
         }
 
     }
-
+/**/
     public String value(String key) {
         return values.get(key);
     }
