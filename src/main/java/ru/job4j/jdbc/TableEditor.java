@@ -1,6 +1,5 @@
 package ru.job4j.jdbc;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -28,7 +27,7 @@ public class TableEditor implements AutoCloseable {
             String password = properties.getProperty("hibernate.connection.password");
             connection = DriverManager.getConnection(url, login, password);
         } catch (ClassNotFoundException | SQLException e) {
-            System.out.println("Ошибка");
+            throw new IllegalArgumentException();
         }
 
     }
@@ -95,30 +94,30 @@ public class TableEditor implements AutoCloseable {
     public static void main(String[] args) throws Exception {
         Properties config = new Properties();
 
-        /* InputStream in = FileInputStream.class.getClassLoader().getResourceAsStream("src/main/resources/app.properties");*/
-        InputStream in = new FileInputStream("src/main/resources/app.properties");
-        config.load(in);
+        try (InputStream in = TableEditor.class.getClassLoader().getResourceAsStream("app.properties")) {
+            config.load(in);
+        }
 
-        TableEditor tableEditor = new TableEditor(config);
-        tableEditor.initConnection();
+        try (TableEditor tableEditor = new TableEditor(config)) {
 
-        System.out.println("Создаем таблицу");
-        tableEditor.createTable("test_table");
-        System.out.println(getTableScheme(tableEditor.connection, "test_table"));
+            System.out.println("Создаем таблицу");
+            tableEditor.createTable("test_table");
+            System.out.println(getTableScheme(tableEditor.connection, "test_table"));
 
-        System.out.println("Добавляем колонку");
-        tableEditor.addColumn("test_table", "id", "serial primary key");
-        System.out.println(getTableScheme(tableEditor.connection, "test_table"));
+            System.out.println("Добавляем колонку");
+            tableEditor.addColumn("test_table", "id", "serial primary key");
+            System.out.println(getTableScheme(tableEditor.connection, "test_table"));
 
-        System.out.println("Переименовываем колонку");
-        tableEditor.renameColumn("test_table", "id", "index");
-        System.out.println(getTableScheme(tableEditor.connection, "test_table"));
+            System.out.println("Переименовываем колонку");
+            tableEditor.renameColumn("test_table", "id", "index");
+            System.out.println(getTableScheme(tableEditor.connection, "test_table"));
 
-        System.out.println("Удаляем колонку");
-        tableEditor.dropColumn("test_table", "index");
-        System.out.println(getTableScheme(tableEditor.connection, "test_table"));
+            System.out.println("Удаляем колонку");
+            tableEditor.dropColumn("test_table", "index");
+            System.out.println(getTableScheme(tableEditor.connection, "test_table"));
 
-        System.out.println("Удаляем таблицу");
-        tableEditor.dropTable("test_table");
+            System.out.println("Удаляем таблицу");
+            tableEditor.dropTable("test_table");
+        }
     }
 }
