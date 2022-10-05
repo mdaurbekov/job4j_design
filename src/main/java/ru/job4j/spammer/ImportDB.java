@@ -29,9 +29,9 @@ public class ImportDB {
                 String[] strings = e.split(";");
                 if (strings.length != 2 || strings[0].isBlank() || strings[1].isBlank()) {
                     throw new IllegalArgumentException();
-                } else {
-                    users.add(new User(strings[0], strings[1]));
                 }
+                users.add(new User(strings[0], strings[1]));
+
             });
         }
         return users;
