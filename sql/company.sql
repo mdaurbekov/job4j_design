@@ -33,8 +33,8 @@ from person p
          left join company c on c.id = p.company_id
 where p.company_id != 5;
 
-select c.name
-from company c
-where id = (select max(p.company_id) from person p);
-
+select p.name, c.name
+from person p
+         left join company c on c.id = p.company_id
+where p.id = (select max(p.company_id) from person p);
 
