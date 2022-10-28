@@ -33,8 +33,10 @@ from person p
          left join company c on c.id = p.company_id
 where p.company_id != 5;
 
-select p.name, c.name
+select c.name, count(p.company_id)
 from person p
          left join company c on c.id = p.company_id
-where p.id = (select max(p.company_id) from person p);
+group by c.name
+order by count(p.name) desc
+offset 0 rows fetch next 1 rows only;
 
