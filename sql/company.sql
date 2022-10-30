@@ -35,8 +35,8 @@ where p.company_id != 5;
 
 select c.name, count(p.company_id)
 from person p
-         left join company c on c.id = p.company_id
+         join company c
+              on c.id = p.company_id
 group by c.name
-order by count(p.name) desc
-offset 0 rows fetch next 1 rows only;
-
+having COUNT(p.company_id) =
+       (select count(p.company_id) from person p group by p.company_id order by count(p.company_id) desc limit 1);
